@@ -625,6 +625,7 @@ body.dark-mode .p3:hover {
     text-align: center;
     box-shadow: 0 4px 15px rgb(0, 0, 0);
     position: relative;
+    color: black;
 }
 
 .close-button {
@@ -640,6 +641,7 @@ body.dark-mode .p3:hover {
     font-size: 1.5em;
     margin-bottom: 15px;
     text-align: center;
+    color: #000000;
 }
 
 .modal input {
@@ -649,6 +651,7 @@ body.dark-mode .p3:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
+    color: black;
 }
 
 .modal button {
