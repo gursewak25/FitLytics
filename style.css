@@ -521,7 +521,7 @@ body.dark-mode .p2 {
 
 .p3:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px 4px #00ddff, 0 0 40px 8px rgba(0, 221, 255, 0.5);
+    box-shadow: 0 0 1px 1px #00ddff, 0 0 20px 4px rgba(0, 221, 255, 0.5);
     transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -531,7 +531,7 @@ body.dark-mode .p3 {
 }
 
 body.dark-mode .p3:hover {
-    box-shadow: 0 0 10px 4px #005f99, 0 0 40px 8px rgba(0, 221, 255, 0.188);
+    box-shadow: 0 0 3px 3px #005f99, 0 0 20px 4px rgba(0, 221, 255, 0.188);
 }
 
 @media (max-width: 1000px) {
