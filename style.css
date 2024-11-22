@@ -1333,6 +1333,7 @@ body.dark-mode .bluetooth-card{
     background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
+    color: #000000;
 }
 
 .bluetooth-modal-content {
@@ -1341,10 +1342,12 @@ body.dark-mode .bluetooth-card{
     border-radius: 8px;
     text-align: center;
     width: 400px;
+    color: #000000;
 }
 
 .bluetooth-modal-content h2 {
     margin-bottom: 10px;
+    color: #000000;
 }
 
 #device-list {
@@ -1353,6 +1356,8 @@ body.dark-mode .bluetooth-card{
     max-height: 150px;
     overflow-y: auto;
     margin-bottom: 15px;
+    color: black;
+    border: 2px solid grey;
 }
 
 #device-list li {
