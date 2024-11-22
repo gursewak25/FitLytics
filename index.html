@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitlytics</title>
+    <link rel="icon" href="favicon.jpg" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="loader">
+        <div class="startpage">
+        <div class="centering">
+         <div class="wrapper">
+             <div class="circle"></div>
+             <div class="circle"></div>
+             <div class="circle"></div>
+             <div class="shadow"></div>
+             <div class="shadow"></div>
+             <div class="shadow"></div>
+         </div>
+        </div>
+        <div class="welcome">
+         <div class="biggerp">"Pumping Up ..."</div>
+      </div>
+        </div>
+     </div>
+     <div class="loader2"></div>
+    <div class="main">
+        <header>
+            <div class="navbar">
+                <input id="unique-checkbox" type="checkbox">
+                <label class="unique-toggle" for="unique-checkbox">
+                    <div id="unique-bar1" class="unique-bars"></div>
+                    <div id="unique-bar2" class="unique-bars"></div>
+                    <div id="unique-bar3" class="unique-bars"></div>
+                </label>
+                <nav class="unique-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="workouts.html">Bluetooth</a></li>
+                        
+                    </ul>
+                </nav>
+                <div class="logodiv">
+                    <a href="index.html">
+                        <h1>FITLYTICS</h1>
+                    </a>
+                </div>
+                <div class="container">
+                    <label class="toggle" for="switch">
+                        <input id="switch" class="input" type="checkbox">
+                        <div class="icon icon--moon">
+                            <svg height="32" width="32" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd"
+                                    d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+
+                        <div class="icon icon--sun">
+                            <svg height="32" width="32" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z">
+                                </path>
+                            </svg>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <div class="page1">
+            <div class="sheru">
+             <div class="sheru2">
+                 <div class="p1">Your Fitness Journey</div>
+                 <div class="p2">Starts Here</div>
+                 <div class="p3center">
+                    <div class="p3">Login / Register</div>
+                 </div>
+             </div>
+             <div class="sheru2 imagesection">
+                 <img src="main_img.png" alt="" class="src">
+             </div>
+            </div>
+         </div>
+     
+        <!-- Login Modal -->
+        <div class="modal-overlay" id="login-modal">
+            <div class="modal">
+                <span class="close-button" id="close-login-modal">&times;</span>
+                <h2>Welcome Back</h2>
+                <form id="login-form">
+                    <label for="login-name">Name:</label>
+                    <input type="text" id="login-name" name="login-name" placeholder="Enter your name" required>
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" name="login-username" placeholder="Enter your username" required>
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="register-password" placeholder="Enter your password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" id="open-register-modal">Sign up here</a>.</p>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal-overlay" id="register-modal">
+            <div class="modal">
+                <span class="close-button" id="close-register-modal">&times;</span>
+                <h2>Register</h2>
+                <form id="register-form">
+                    <label for="register-name">Name:</label>
+                    <input type="text" id="register-name" name="register-name" placeholder="Enter your name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="register-password" placeholder="Enter your password" required>
+                    <button type="submit">Register</button>
+                </form>
+                <p>Already have an account? <a href="#" id="open-login-modal">Login here</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="dividerline"></div>
+
+    <div class="page11">
+        <div class="card-container">
+            <div class="gradient-card">
+                <h1>Let's Get Fit</h1>
+                <button class="start-bton" id="startWorkoutBtn">Start Workout &rarr;</button>
+            </div>
+        </div>        
+    </div>
+    
+
+    <div class="page2">
+        <div class=" getting centering">
+            WITH US YOU GET :
+        </div>
+        <div class="slogans">
+            <div class="slogan-box">Real Time Progress Tracking</div>
+            <div class="slogan-box">Personalized Fitness Guidance</div>
+            <div class="slogan-box">Smarter and Safer Workouts</div>
+            <div class="slogan-box">The Results That Matter</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>About Us</h2>
+                <p>FitLytics helps the users to optimize their workouts and monitor their fitness progress. It acts as a virtual coach, providing real-time feedback to ensure proper exercising form. This not only helps users achieve better results but also minimizes the risk of injury.</p>
+            </div>
+            <div class="footer-section links">
+                <h2>Links</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="workouts.html">Bluetooth</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section subscribe">
+                <h2>Subscribe to Our Newsletter</h2>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="cee1cf2f-9298-4467-8abc-3cd971dec6c6">
+                    <input type="email" name="E-Mail" placeholder="Your Email Address" required>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FitLytics. All rights reserved.</p>
+        </div>
+    </footer>
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
