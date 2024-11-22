@@ -1267,6 +1267,7 @@ body.dark-mode .footer-section form input {
  }
 
  .abtpara{
+    text-align: center;
     font-size: 20px;
     padding: 2vw 4vw;
  }
