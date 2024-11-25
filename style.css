@@ -109,11 +109,6 @@ body.dark-mode .biggerp {
     color: #005f99;
 }
 
-@media only screen and (max-width: 500px) {
-    .biggerp {
-        font-size: 22px;
-    }
-}
 
 .dividerline {
     height: 1px;
