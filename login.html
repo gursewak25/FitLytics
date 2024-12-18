@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitlytics</title>
+    <link rel="icon" href="favicon.jpg" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="register.js" defer></script>
+    <script type="module" src="login.js" defer></script>
+    
+</head>
+<body>
+     
+
+     <div class="pagea">
+               <!-- Login Modal -->
+               <div class="modal-overlay" id="login-modal">
+                <div class="centering">
+                    <div class="modal">
+                        <h2>Log In</h2>
+                        <form id="login-form">
+                            <label for="login-name">Name:</label>
+                            <input type="text" id="login-name" name="login-name" placeholder="Enter your name" required>
+                            <label for="email">Email:</label>
+                            <input type="email" id="login-email" name="login-email" placeholder="Enter your Email" required>
+                            <label for="register-password">Password:</label>
+                            <input type="password" id="login-password" name="login-password"  placeholder="Enter your password (min len = 8)" minlength="8" required>
+                            <button type="submit" id="loginbtn">Login</button>
+                        </form>
+                        <p>Don't have an account? <a href="#" id="open-register-modal">Sign up here</a>.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Register Modal -->
+            <div class="modal-overlay" id="register-modal">
+               <div class="centering">
+                <div class="modal">
+                    <h2>Register</h2>
+                    <form id="register-form">
+                        <label for="register-name">Name:</label>
+                        <input type="text" id="register-name" name="register-name" placeholder="Enter your name" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" name="register-password" placeholder="Enter your password (min len = 8)"  minlength="8" required>
+                        <button type="submit" id="registerbtn">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="#" id="open-login-modal">Login here</a>.</p>
+                </div>
+               </div>
+            </div>
+        </div>
+     </div>
+
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect Two BLE Devices</title>
+    <link rel="icon" href="favicon.jpg" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #workoutButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            color: aqua;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 2px solid aqua;
+            background-color: rgb(35, 35, 35);
+        }
+        #workoutButton:disabled {
+            cursor: not-allowed;
+            color: rgba(0, 255, 255, 0.429);
+            border: 2px solid rgba(0, 255, 255, 0.429);
+            background-color: rgba(70, 70, 70, 0.562);
+        }
+    </style>
+</head>
+<body>
+    <div class="page001">
+        <div class="contt">
+            <h1>Connect BLE Devices</h1>
+            <div class="centering2">
+                <button id="connectButton1">Connect to Wrist Device</button>
+                <button id="connectButton2">Connect to Ankle Device</button>
+            </div>
+            <div id="status"></div>
+            <button id="workoutButton" disabled>Start Workout &rarr;</button>
+        </div>
+    </div>
+
+    <script>
+        // Device UUIDs (for verification AFTER connection - Optional)
+        const WRIST_UUID = "B0E32D67-3D63-201E-84FB-06F28A70FD6E";
+        const ANKLE_UUID = "8F5612CB-16ED-CA31-769D-61A9DCCF02FD";
+
+        // Service UUIDs (ESSENTIAL for discovery) - **REPLACE THESE**
+        const WRIST_SERVICE_UUID = "12345678-1234-5678-1234-56789abcdef8"; // **REPLACE THIS**
+        const ANKLE_SERVICE_UUID = "12345678-1234-5678-1234-56789abcdef9"; // **REPLACE THIS**
+
+        // Characteristic UUIDs (YOU MUST PROVIDE THESE) - **REPLACE THESE**
+        const WRIST_DATA_UUID = "12345678-1234-5678-1234-56789abcdef1"; // **REPLACE THIS**
+        const ANKLE_DATA_UUID = "12345678-1234-5678-1234-56789abcdef3"; // **REPLACE THIS**
+
+        const connectButton1 = document.getElementById('connectButton1');
+        const connectButton2 = document.getElementById('connectButton2');
+        const status = document.getElementById('status');
+        const workoutButton = document.getElementById('workoutButton');
+
+        let wristDevice = null;
+        let ankleDevice = null;
+
+        connectButton1.addEventListener('click', async () => {
+            await connectToDevice(WRIST_SERVICE_UUID, WRIST_DATA_UUID, "Wrist");
+        });
+
+        connectButton2.addEventListener('click', async () => {
+            await connectToDevice(ANKLE_SERVICE_UUID, ANKLE_DATA_UUID, "Ankle");
+        });
+
+        workoutButton.addEventListener('click', () => {
+            window.location.href = "workouts.html";
+        });
+
+        async function connectToDevice(serviceUuid, dataUuid, deviceName) {
+            try {
+                status.textContent = `Scanning for ${deviceName} Device...`;
+
+                const device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: [serviceUuid] }],
+                    optionalServices: [serviceUuid]
+                });
+
+                console.log("Device found:", device);
+
+                status.textContent = `Connecting to ${deviceName} Device...`;
+                const server = await device.gatt.connect();
+
+                status.textContent = `Getting Service and Characteristic for ${deviceName}...`;
+                const service = await server.getPrimaryService(serviceUuid);
+                const characteristic = await service.getCharacteristic(dataUuid);
+
+                await characteristic.startNotifications();
+                characteristic.addEventListener('characteristicvaluechanged', (event) => {
+                    handleCharacteristicValueChanged(event, deviceName, device.id);
+                });
+
+                status.textContent = `${deviceName} device connection successful`;
+
+                if (deviceName === "Wrist") {
+                    wristDevice = device;
+                    connectButton1.disabled = true;
+                } else if (deviceName === "Ankle") {
+                    ankleDevice = device;
+                    connectButton2.disabled = true;
+                }
+
+                if (wristDevice && ankleDevice) {
+                    status.textContent = "Both devices connected. Ready to perform exercises.";
+                    workoutButton.disabled = false;
+                }
+
+            } catch (error) {
+                status.textContent = `Connection error (${deviceName}): ${error}`;
+                console.error(`Error connecting to ${deviceName}:`, error);
+            }
+        }
+
+        function handleCharacteristicValueChanged(event, deviceName, deviceId) {
+            const value = event.target.value;
+            let data = new Uint8Array(value.buffer);
+            console.log(`${deviceName} (ID: ${deviceId}) Received:`, data);
+        }
+    </script>
+</body>
+</html>
