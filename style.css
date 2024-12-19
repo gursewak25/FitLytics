@@ -1706,27 +1706,24 @@ body.dark-mode .bar-fill{
 
 
 
-#user-info {
-    padding: 20px;
-    background-color: #272727;
-    border: 1px solid #ccc;
-    margin-top: 20px;
-  }
-  
-  #user-info p {
-    font-size: 18px;
-    color: #ffffff;
-  }
   
   #latest-accuracies {
-    padding: 20px;
-    background-color: #141414;
+    background-color: aqua;
     border: 1px solid #ccc;
-    margin-top: 20px;
+    margin : 30px;
+    border-radius: 5px;
+    padding: 0 15px;
+    color: black;
+  }
+
+  body.dark-mode #latest-accuracies{
+    background-color: #004d7d;
+    color: white;
   }
   
   #latest-accuracies h3 {
     color: #ffffff;
+    font-size: 2em;
   }
   
   #accuracy-list {
@@ -1735,8 +1732,17 @@ body.dark-mode .bar-fill{
   }
   
   #accuracy-list li {
-    font-size: 16px;
+    font-size: 20px;
     color: #333;
+  }
+
+  .accuracy-item{
+    margin: 12px 0;
+    text-align: center;
+  }
+  .average-accuracy{
+    font-weight: 600;
+    text-align: center;
   }
   .page001{
     height: 100vh;
@@ -1746,6 +1752,7 @@ body.dark-mode .bar-fill{
     justify-content: center;
     background-color: #1c5491;
   }
+
   .contt{
     max-width: 600px;
     background-color: #60606080;
