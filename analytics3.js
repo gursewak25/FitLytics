@@ -21,60 +21,63 @@ const auth = getAuth();
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("User logged in:", user);
-    await fetchLastThreeBicepCurls(user); // Fetch bicep curls if the user is logged in
+    await fetchLastFiveLegRaises(user); // Fetch leg raises if the user is logged in
     displayUserInfo(user); // Display user's name and ID
   } else {
     console.log("No user logged in");
-    document.getElementById("accuracy-list").innerHTML = "Please log in to view your bicep curls.";
+    document.getElementById("accuracy-list").innerHTML = "Please log in to view your leg raises.";
     document.getElementById("user-info").innerHTML = ""; // Clear user info if no user is logged in
   }
 });
 
-async function fetchLastThreeBicepCurls(user) {
+// Fetch the last 5 leg raises for a user
+async function fetchLastFiveLegRaises(user) {
   const userDocRef = doc(db, "users", user.uid);
   try {
     const userDocSnap = await getDoc(userDocRef);
     if (userDocSnap.exists()) {
       const userData = userDocSnap.data();
-      const bicepCurls = userData.bicep_curls || [];
+      const legRaises = userData.leg_raises || [];
 
-      if (bicepCurls.length === 0) {
-        console.log("No bicep curls data found.");
-        document.getElementById("accuracy-list").innerHTML = "No bicep curls data found.";
+      if (legRaises.length === 0) {
+        console.log("No leg raises data found.");
+        document.getElementById("accuracy-list").innerHTML = "No leg raises data found.";
         return;
       }
 
-      const sortedBicepCurls = bicepCurls.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      // Sort the leg raises by timestamp in descending order
+      const sortedLegRaises = legRaises.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-      const latestFive = sortedBicepCurls.slice(0, 10);
+      // Take the latest 5 entries
+      const latestFive = sortedLegRaises.slice(0, 5);
 
+      // Display the latest 5 accuracies in HTML
       const accuracyListContainer = document.getElementById("accuracy-list");
       accuracyListContainer.innerHTML = ''; // Clear any previous data
 
       latestFive.forEach((entry, index) => {
         const accuracyItem = document.createElement("div");
         accuracyItem.classList.add("accuracy-item");
-        accuracyItem.textContent = `Accuracy  ${index + 1} : ${entry.accuracy}% (Timestamp: ${entry.timestamp})`;
+        accuracyItem.textContent = `Accuracy ${index + 1}: ${entry.accuracy}% (Timestamp: ${entry.timestamp})`;
         accuracyListContainer.appendChild(accuracyItem);
       });
 
-    // Calculate average accuracy
-    const totalAccuracy = latestFive.reduce((sum, entry) => sum + parseFloat(entry.accuracy), 0);
-    const averageAccuracy = (totalAccuracy / latestFive.length).toFixed(2);
+      // Calculate average accuracy
+      const totalAccuracy = latestFive.reduce((sum, entry) => sum + parseFloat(entry.accuracy), 0);
+      const averageAccuracy = (totalAccuracy / latestFive.length).toFixed(2);
 
-    // Display the average accuracy
-    const averageAccuracyElement = document.createElement("div");
-    averageAccuracyElement.classList.add("average-accuracy");
-    averageAccuracyElement.textContent = `Average Accuracy: ${averageAccuracy}%`;
-    accuracyListContainer.appendChild(averageAccuracyElement);
+      // Display the average accuracy
+      const averageAccuracyElement = document.createElement("div");
+      averageAccuracyElement.classList.add("average-accuracy");
+      averageAccuracyElement.textContent = `Average Accuracy: ${averageAccuracy}%`;
+      accuracyListContainer.appendChild(averageAccuracyElement);
 
-    console.log(`Average Accuracy: ${averageAccuracy}%`);
-  } else {
-    console.log("No such user document!");
+      // Also log to the console
+      console.log(`Average Accuracy: ${averageAccuracy}%`);
+    } else {
+      console.log("No such user document!");
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
   }
-} catch (error) {
-  console.error("Error fetching user data:", error);
 }
-}
-
-
